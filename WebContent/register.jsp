@@ -1,3 +1,4 @@
+<%@ page session="false" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" errorPage="error.jsp"%>
 <!DOCTYPE html>
@@ -108,10 +109,10 @@
 	<input type="password" placeholder="Enter Password" name="password" required><br>
 	<label for="password2"><b>Re-enter Password</b></label>
 	<input type="password" placeholder="Re-enter Password" name="password2" required><br>
-	<p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+	<p>By creating an account you agree to our <a href="itemsDAO.txt" style="color:dodgerblue">Terms & Privacy</a>.</p>
 	<div class="clearfix">
 	<button type="submit" class="signupbtn">Sign Up</button>
-	<button type="button" class="cancelbtn">Cancel</button>
+	<a href="login.jsp"><button type="button" class="cancelbtn">Cancel</button></a>
 	</div>
 	</div>
 	</form>

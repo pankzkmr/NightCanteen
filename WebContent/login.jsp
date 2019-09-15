@@ -1,3 +1,5 @@
+<%@ page session="false" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" errorPage="error.jsp"%>
 <!DOCTYPE html>
@@ -19,6 +21,11 @@
 		background-color: black;
 		font-family: courier;
 		color: white;
+	}
+	.error {
+		text-align: center;
+		position: relative;
+		color: red;
 	}
 	form {
 		display: inline-block;
@@ -62,6 +69,11 @@
 </head>
 <body>
 	<h1 style="">WELCOME!</h1>
+	<div class="error">
+	<c:if test="${login = true}">
+		${message }
+	</c:if>
+	</div>
 	<form action="log_check" method="post">
 	<div class="imgcontainer">
     <img src="img/img_avatar.png" alt="Avatar" class="avatar">

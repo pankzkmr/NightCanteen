@@ -5,6 +5,7 @@ public class Product {
 	private String product_name;
 	private String product_image;
 	private int price;
+
 	public Product(int product_id, String product_name, String product_image, int price) {
 		super();
 		this.product_id = product_id;
@@ -12,6 +13,7 @@ public class Product {
 		this.product_image = product_image;
 		this.price = price;
 	}
+
 	public int getProduct_id() {
 		return product_id;
 	}
@@ -41,5 +43,5 @@ public class Product {
 	/*
 	 * public void setPrice(int price) { this.price = price; }
 	 */
-	
+
 }

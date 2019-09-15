@@ -1,3 +1,7 @@
+<%@ page session="false" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,10 +76,21 @@
 	</style>
 </head>
 <body bgcolor='black'>
+<%
+	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+	response.setHeader("Pragma", "no-cache");
+	response.setHeader("Expires", "0");
+	if(request.getSession() == null) {
+		response.sendRedirect("login.jsp");
+	}
+%>
 	<div class="headerimg">
 		<img src='img/logo.jpg' style="margin-left: 50px; width:275px;height:125px;">
 	</div>
-	
+		
+	<div>
+		Welcome ${name}
+	</div>
 
 	<div class="row">
 		<div class="column">
