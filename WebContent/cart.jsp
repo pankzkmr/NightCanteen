@@ -12,6 +12,13 @@ p {
 	color: white;
 }
 
+input[type=checkbox] {
+	transform: scale(2);
+	-ms-transform: scale(2);
+	-webkit-transform: scale(2);
+	padding: 10px;
+}
+
 .footerimg {
 	/*background: url(img/footer.png);*/
 	background-color: #DAF7A6;
@@ -131,6 +138,17 @@ input {
 	border-radius: 3px;
 }
 
+.empty {
+	height: 100%;
+	text-shadow: 2px 2px 8px #FF0000;
+	color: white;
+	font-family: courier;
+	font-size: 200%;
+	vertical-align: middle;
+	text-align: center;
+	margin: 12% 15%;
+}
+
 .remove-product:hover {
 	background-color: #a44;
 }
@@ -138,66 +156,70 @@ input {
 </head>
 
 
-<body bgcolor='black' style="color:white">
-<%
-	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-	response.setHeader("Pragma", "no-cache");
-	response.setHeader("Expires", "0");
-	if(session.getAttribute("name") == null) {
-		request.setAttribute("login", true);
-		request.setAttribute("message", "Please login first!");
-		request.getRequestDispatcher("login.jsp").forward(request, response);
-	}
-	if(session.getAttribute("productList2") == null) {
-		out.println("Nothing is in cart");
-	}
-%>
+<body bgcolor='black' style="color: white">
+	<%
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+		response.setHeader("Pragma", "no-cache");
+		response.setHeader("Expires", "0");
+		if (session.getAttribute("name") == null) {
+			request.setAttribute("login", true);
+			request.setAttribute("message", "Please login first!");
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+		}
+		if (session.getAttribute("productList2") == null) {
+			session.setAttribute("isEmpty", true);
+		}
+	%>
 	<div class="topnav">
-		<a href="index.jsp">Home</a> <a href="items.html">Items</a> <a
-			class="active" href="cart.html">Cart</a> <a href="#wallet">Wallet</a>
-		<a href="order-history.html">Order-History</a> <a class="myprofile"
-			href="my-profile.html">My Profile</a>
+		<a href="index.jsp">Home</a> <a href="itemsDAO">Items</a> <a
+			class="active" href="cartDAO">Cart</a> <a href="#wallet">Wallet</a>
+		<a href="order_history">Order-History</a> <a class="myprofile"
+			href="profile.jsp">My Profile</a>
 	</div>
-
-
+	<c:if test="${isEmpty == true}">
+		<div class="empty">Nothing is in here!</div>
+	</c:if>
 	<div>
 		<table>
-			<tr>
-				<th
-					style="text-shadow: 2px 2px 8px #FF0000; color: yellow; font-family: courier;">Product</th>
-				<th
-					style="text-shadow: 2px 2px 8px #FF0000; color: yellow; font-family: courier;">Product
-					Name</th>
-				<th
-					style="text-shadow: 2px 2px 8px #FF0000; color: yellow; font-family: courier;">Price</th>
-				<th
-					style="text-shadow: 2px 2px 8px #FF0000; color: yellow; font-family: courier;">Quantity</th>
-				<th>Remove</th>
-			</tr>
+			<c:if test="${isEmpty == false}">
+				<tr>
+					<th
+						style="text-shadow: 2px 2px 8px #FF0000; color: yellow; font-family: courier;">Product</th>
+					<th
+						style="text-shadow: 2px 2px 8px #FF0000; color: yellow; font-family: courier;">Product
+						Name</th>
+					<th
+						style="text-shadow: 2px 2px 8px #FF0000; color: yellow; font-family: courier;">Price</th>
+					<th
+						style="text-shadow: 2px 2px 8px #FF0000; color: yellow; font-family: courier;">Quantity</th>
+					<th
+						style="text-shadow: 2px 2px 8px #FF0000; color: yellow; font-family: courier;">Remove</th>
+				</tr>
+			</c:if>
 			<form action="finalDAO" method="post">
-			<c:forEach items="${productList2}" var="product">
-			<tr>
-				<td><img src="data:image/*;base64,${product.product_image}"
-						height="100" width="100" style="border-radius: 50%;"></td>
-				<td>${product.product_name}</td>
-				<td>Rs.${product.price}</td>
-				<td class="product-quantity"><input type="number" value="2"
-					min="1">
-				<td>
-				<td><input type="checkbox" class="add-button"
-					name="${product.product_id}" value="REMOVE"></td>
-			</tr>
-			</c:forEach>
-
+				<c:forEach items="${productList2}" var="product">
+					<tr>
+						<td><img src="data:image/*;base64,${product.product_image}"
+							height="100" width="100" style="border-radius: 50%;"></td>
+						<td>${product.product_name}</td>
+						<td>Rs.${product.price}</td>
+						<td class="product-quantity"><input type="number" name="${product.product_id }${product.price}" value="1"
+							min="1">
+						<td>
+						<td><input type="checkbox" class="remove-product"
+							name="${product.product_id}" value="REMOVE"></td>
+					</tr>
+				</c:forEach>
 		</table>
 	</div>
-	<div style="position: relative; margin-left: 44%;">
-		<button class="place-order-button">
-			<b>Place Order</b>
-		</button>
-		</form>
-	</div>
-
+	<c:if test="${isEmpty == false}">
+		<div style="position: relative; margin-left: 44%;">
+			<button type="submit" class="place-order-button">
+				<b>Place Order</b>
+			</button>
+		</div>
+	</c:if>
+	</form>
 	<footer class="footerimg"
 		style="position: relative; height: 200px; padding: 0px; left: 0px; right: 0px; text-align: center; bottom: 0px;">
 		<ul class="ulaa" style="list-style-type: none; padding-top: 20px;">
@@ -212,8 +234,8 @@ input {
 				<p>
 					<a
 						style="color: black; font-family: courier; font-size: 125%; text-decoration: none;"
-						href="##"><b>CONNECT WITH US</b></a><br>
-					<i style="color: #FF1414;">Facebook<br>Twitter<br>Instagram
+						href="##"><b>CONNECT WITH US</b></a><br> <i
+						style="color: #FF1414;">Facebook<br>Twitter<br>Instagram
 					</i>
 				</p>
 			</li>
@@ -228,8 +250,8 @@ input {
 				<p>
 					<a
 						style="color: black; font-family: courier; font-size: 125%; text-decoration: none;"
-						href="##"><b>LET US HELP YOU</b></a><br>
-					<i style="color: #FF1414;">Help<br>FAQ's
+						href="##"><b>LET US HELP YOU</b></a><br> <i
+						style="color: #FF1414;">Help<br>FAQ's
 					</i>
 				</p>
 			</li>

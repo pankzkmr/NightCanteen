@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -50,5 +51,19 @@ public class DataBase {
 	public void close() throws SQLException {
 		connection.close();
 		statement.close();
+	}
+
+
+	public void getUpdate(String query) throws SQLException {
+		statement.executeUpdate(query);
+		return;
+	}
+
+
+	public int prepareStatement(String query, String order_id, int total) throws SQLException {
+		PreparedStatement statement = connection.prepareStatement(query);
+		statement.setString(1, order_id);
+		statement.setInt(2, total);
+		return statement.executeUpdate();		
 	}
 }

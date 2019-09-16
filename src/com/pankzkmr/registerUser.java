@@ -28,13 +28,14 @@ public class registerUser extends HttpServlet {
 		String roomNo = request.getParameter("roomNo");
 		String phoneNo = request.getParameter("phoneNo");
 		String password = request.getParameter("password");
+		String image = request.getParameter("pic");
+		System.out.println(image);
 		String tableName = "profile";
 		String tableName2 = "branch_table";
 		String tableName3 = "logindata";
 		String query = "insert into " + tableName + " values (?,?,?,?,?,?)";
 		String query2 = "select branch_id from " + tableName2 + " where branch = \"" + branch + "\"";
 		String query3 = "insert into " + tableName3 + " values (?,?)";
-		PrintWriter out = response.getWriter();
 		Class.forName("com.mysql.jdbc.Driver");
 		Connection connection = DriverManager.getConnection(url, uname, passwd);
 		Statement statement2 = connection.createStatement();
@@ -50,7 +51,6 @@ public class registerUser extends HttpServlet {
 		statement.setInt(6, branch_id);
 		int n = statement.executeUpdate();
 		System.out.println(n + "row/s affected by query1");
-		out.println(password);
 		statement = connection.prepareStatement(query3);
 		statement.setInt(1, Integer.parseInt(regNo));
 		statement.setString(2, password);
@@ -65,9 +65,10 @@ public class registerUser extends HttpServlet {
 			throws ServletException, IOException {
 		ServletContext sc = this.getServletContext();
 		RequestDispatcher rd = sc.getRequestDispatcher("/login.jsp");
+		request.setAttribute("login", true);
+		request.setAttribute("message", "Thanks for registration!");
 		rd.include(request, response);
 		PrintWriter out = response.getWriter();
-		out.println("pankaj is in registerUser");
 		try {
 			DBC(request, response);
 		} catch (ClassNotFoundException | SQLException e) {

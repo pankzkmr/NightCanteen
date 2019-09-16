@@ -24,23 +24,13 @@ public class profileDAO extends HttpServlet {
 		connection.getAccess("root", "1251");
 		ResultSet result = connection.getResult("select * from profile where reg_no = "+ reg_no);
 		result.next();
-		System.out.println("a");
 		String flank = result.getString("flank");
-		System.out.println("a");
 		String phone_no = result.getString("phone_no");
-		System.out.println("a");
 		int room_no = result.getInt("room_no");
-		System.out.println("a");
 		int branch_id = result.getInt("branch_id");
-		System.out.println("a");
-		result.close();
-		System.out.println("a");
 		connection.getAccess("root", "1251");
-		System.out.println("a");
 		result = connection.getResult("select branch from branch_table where branch_id = "+ branch_id);
-		System.out.println("a");
 		result.next();
-		System.out.println("a");
 		String branch = result.getString("branch");
 		String room_no_string = correctRoomNo(room_no, flank);
 		String phone_no_hidden = correctPhoneNo(phone_no);
@@ -55,7 +45,7 @@ public class profileDAO extends HttpServlet {
 	}
 	
 	private String correctPhoneNo(String phone_no) {
-		return "*******"+phone_no.substring(7);
+		return "******"+phone_no.substring(6);
 	}
 
 	private String correctRoomNo(int room_no, String flank) {
@@ -84,7 +74,6 @@ public class profileDAO extends HttpServlet {
 			request.setAttribute("message", "Please login first!");
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

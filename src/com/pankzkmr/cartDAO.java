@@ -14,9 +14,10 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/cartDAO")
 public class cartDAO extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	protected void getSelected(HttpServletRequest request, HttpSession session) throws ClassNotFoundException, SQLException, IOException {
-		
+
+	protected void getSelected(HttpServletRequest request, HttpSession session)
+			throws ClassNotFoundException, SQLException, IOException {
+
 //		ArrayList<Product> productarray2 = new ArrayList<Product>();
 //		ArrayList<Product> productarray = (ArrayList<Product>) session.getAttribute("productList");
 //		int total = productarray.size();
@@ -25,7 +26,7 @@ public class cartDAO extends HttpServlet {
 //				productarray2.add(productarray.get(i));
 //			}
 //		}
-//		session.setAttribute("productList2", productarray2);		
+//		session.setAttribute("productList2", productarray2);	
 		String url = "jdbc:mysql://localhost:3306/nightcanteen";
 		DataBase connection = new DataBase(url);
 		connection.getAccess("root", "1251");
@@ -36,8 +37,21 @@ public class cartDAO extends HttpServlet {
 		int price;
 		Blob imageBlob;
 		String base64Image;
-		while(result.next()) {
-			if(request.getParameter(String.valueOf(result.getInt("product_id"))).equals("ADD")) {
+		String product_id_string;
+//		System.out.println(request.getParameter("1001"));
+//		System.out.println(request.getParameter("1002"));
+//		System.out.println(request.getParameter("1003"));
+//		System.out.println(request.getParameter("1004"));
+		String add = "ADD";
+		String condition;
+		boolean isEmpty = true;
+		while (result.next()) {
+			product_id_string = "" + (result.getInt("product_id"));
+			System.out.println(product_id_string);
+			condition = (String) request.getParameter(product_id_string);
+			System.out.println(request.getParameter(product_id_string));
+
+			if (add.equals(condition)) {
 				product_id = result.getInt("product_id");
 				product_name = result.getString("product_name");
 				price = result.getInt("price");
@@ -45,31 +59,41 @@ public class cartDAO extends HttpServlet {
 				base64Image = connection.getImage(imageBlob);
 //					product_cat = result.getInt("product_cat");
 
-				Product product_temp = new Product(product_id, product_name, base64Image, price);
+				Product product_temp = new Product(product_id, product_name, base64Image, price, 0);
 				productarray2.add(product_temp);
+				isEmpty = false;
 			}
 		}
-		session.setAttribute("productList2", productarray2);
+		if(isEmpty == true) {
+			if(session.getAttribute("productList2") == null) {
+				session.setAttribute("isEmpty", true);
+				return;
+			}
+			else {
+				session.setAttribute("isEmpty", false);
+				return;
+			}
+		}
+		else {
+			session.setAttribute("isEmpty", false);
+			session.setAttribute("productList2", productarray2);
+			return;
+		}
 	}
-		
-		
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		System.out.println(session);
-		if(session != null) {
-		try {
-			getSelected(request, session);
-		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println(request.getParameter("1001"));
-		System.out.println(request.getParameter("1002"));
-		System.out.println(request.getParameter("1003"));
-		System.out.println(request.getParameter("1004"));
-		}
-		else {
+		if (session != null) {
+			try {
+				getSelected(request, session);
+			} catch (ClassNotFoundException | SQLException e) {
+				System.out.println("error in cartDAO");
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			request.getRequestDispatcher("cart.jsp").forward(request, response);
+		} else {
 			request.setAttribute("login", true);
 			request.setAttribute("message", "Please login first!");
 			request.getRequestDispatcher("login.jsp").forward(request, response);

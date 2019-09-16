@@ -4,10 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  
-  <title>Night Canteen-MY-Profile</title>
+  <title>Order-History</title>
     <link rel = "icon" href =  
-"img/logo-title.webp" 
+"/home/pradeep/Documents/miniproject/img/logo-title.webp" 
         type = "image/x-icon"> 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
@@ -54,112 +53,61 @@
     }
     .topnav .myprofile {
       float: right;
-      background-color: #4CAF50;
     }
-    img{
-      height:15%;
-      width: 15%;
-      border-radius: 50%; 
+
+    th{
+      padding-top: 50px;  
+      color: white;
+      text-align: center;
+      font-size: 127%;
     }
-    .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 300px;
-  margin: auto;
-  text-align: center;
-  font-family: arial;
-}
-
-.title {
-  color: grey;
-  font-size: 18px;
-}
-
-button {
-  border: none;
-  outline: 0;
-  display: inline-block;
-  padding: 8px;
-  color: white;
-  background-color: red;
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
-  font-size: 18px;
-}
-
-a {
-  text-decoration: none;
-  font-size: 22px;
-  color: black;
-}
-
-button:hover, a:hover {
-  opacity: 0.7;
-}
-.middle {
-  transition: .5s ease;
-  opacity: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-.container:hover .image {
-  opacity: 0.3;
-}
-
-.container:hover .middle {
-  opacity: 1;
-}
+    td{
+      color: white;
+      text-align: center;
+      padding-top: 20px;
+      font-size: 120%;
+    }
+    table{
+      width: 100%;
+    }
+    
+    
   </style>
 </head>
 
 
 <body bgcolor='black'>
-<%
-	request.getSession();
-	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-	response.setHeader("Pragma", "no-cache");
-	response.setHeader("Expires", "0");
-	if(session.getAttribute("name") == null) {
-		request.setAttribute("login", true);
-		request.setAttribute("message", "Please login first!");
-		request.getRequestDispatcher("login.jsp").forward(request, response);
-	}
-	else if(session.getAttribute("room_no") == null) {
-		request.getRequestDispatcher("profileDAO").forward(request, response);
-		System.out.println("in profile.jsp");
-	}
-%>
   <div class="topnav">
     <a href="index.jsp">Home</a>
-    <a href="items.jsp">Items</a>
-    <a href="cart.jsp">Cart</a>
+    <a  href="itemsDAO">Items</a>
+    <a  href="cartDAO">Cart</a>
     <a href="#wallet">Wallet</a>
-    <a href="order_history">Order-History</a>
+    <a class="active" href="order_history.jsp">Order-History</a>
 
-    <a class="myprofile" href="profile.jsp">My Profile</a>
+    <a class="myprofile" href="profileDAO">My Profile</a>
   </div>
 
-  <h2 style="margin-top: 50px; text-shadow: 2px 2px 8px #FF0000;color: yellow;font-family:courier;text-align:center;">My Profile </h2>
 
-<div class="card" style="margin-bottom: 50px;">
-  <div class="container">
-  <img src="img/user.jpeg" alt="John" style="width:100%">
-  <div class="middle"><div ><button>Change Photo</button></div></div>
-  </div>
-  <h1 style="color: white;">${name}</h1>
-  <p class="title">${rer_no}</p>
-  <p>${branch }</p>
-  <p>${room_no}</p>
-  <p>${phone_no}</p>
-  <p><button>Edit</button></p>
-  <a href="" style="color: blue;"><i>Change Password?</i></a>
-</div>
-  
+  <div>
+    <table>
+      <tr>
+        <th style=" text-shadow: 2px 2px 8px #FF0000;color: yellow;font-family:courier;">Date</th>
+        <th style=" text-shadow: 2px 2px 8px #FF0000;color: yellow;font-family:courier;">Time</th>
+        <th style=" text-shadow: 2px 2px 8px #FF0000;color: yellow;font-family:courier;">Order-ID</th>
+        <th style=" text-shadow: 2px 2px 8px #FF0000;color: yellow;font-family:courier;">Total Amount</th>
+        
+      </tr>
+      <c:forEach items="${orderhistory}" var="order">
+      <tr>
+        <td>${order.date }</td>
+        <td>${order.time }</td>
+        <td>${order.order_id }</td>
+        <td>Rs.${order.total }</td>
+      </tr>
+		</c:forEach>
+      </table>
+    </div>
+    
 
     <footer class="footerimg" style=" position: relative; height: 200px; padding: 0px; left: 0px; right: 0px; text-align: center; bottom: 0px;">
       <ul class="ulaa" style="list-style-type: none;padding-top: 20px;">

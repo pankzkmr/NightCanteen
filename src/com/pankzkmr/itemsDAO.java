@@ -47,7 +47,7 @@ public class itemsDAO extends HttpServlet {
 			base64Image = connection.getImage(imageBlob);
 //				product_cat = result.getInt("product_cat");
 
-			Product product_temp = new Product(product_id, product_name, base64Image, price);
+			Product product_temp = new Product(product_id, product_name, base64Image, price, 0);
 			productarray.add(product_temp);
 		}
 		result.close();

@@ -81,6 +81,8 @@
 	<h1>Sign Up</h1>
 	<p>Please fill in this form to create an account.</p>
 	<hr>
+	<label for="pic"><b>Profile Picture(optional):</b></label>
+	<input type="file" name="pic" accept="image/*" style="margin-bottom: 20px;"><br>
 	<label for="name"><b>Name</b></label>
 	<input type="text" placeholder="Enter Your Name" name="name" required><br>
 	<label for="regNo"><b>Registration Number</b></label>

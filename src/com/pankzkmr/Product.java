@@ -5,13 +5,15 @@ public class Product {
 	private String product_name;
 	private String product_image;
 	private int price;
+	private int quantity;
 
-	public Product(int product_id, String product_name, String product_image, int price) {
+	public Product(int product_id, String product_name, String product_image, int price, int quantity) {
 		super();
 		this.product_id = product_id;
 		this.product_name = product_name;
 		this.product_image = product_image;
 		this.price = price;
+		this.quantity = quantity;
 	}
 
 	public int getProduct_id() {
@@ -42,6 +44,14 @@ public class Product {
 	}
 	/*
 	 * public void setPrice(int price) { this.price = price; }
+	 */
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	/*
+	 * public void setQuantity(int quantity) { this.quantity = quantity; }
 	 */
 
 }

@@ -141,9 +141,9 @@ table {
 	}
 %>
 	<div class="topnav">
-		<a href="index.jsp">Home</a> <a class="active" href="items.html">Items</a>
+		<a href="index.jsp">Home</a> <a class="active" href="items.jsp">Items</a>
 		<a href="cartDAO">Cart</a> <a href="#wallet">Wallet</a> <a
-			href="#order-history">Order-History</a> <a class="myprofile"
+			href="order_history">Order-History</a> <a class="myprofile"
 			href="profileDAO">My Profile</a>
 	</div>
 
