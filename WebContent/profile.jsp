@@ -156,7 +156,7 @@ button:hover, a:hover {
   <p>${branch }</p>
   <p>${room_no}</p>
   <p>${phone_no}</p>
-  <p><button>Edit</button></p>
+  <p><a href="modify.jsp"><button>Edit</button></a></p>
   <a href="" style="color: blue;"><i>Change Password?</i></a>
 </div>
   

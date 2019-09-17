@@ -18,8 +18,7 @@ public class itemsDAO extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public ArrayList<Product> getProducts(ArrayList<Product> productarray, HttpServletRequest request,
-			HttpServletResponse response) throws SQLException, IOException, ClassNotFoundException {
-		HttpSession session = request.getSession();
+			HttpServletResponse response, HttpSession session) throws SQLException, IOException, ClassNotFoundException {
 		String url = "jdbc:mysql://localhost:3306/nightcanteen";
 //		String table1 = "product";
 //		String table2 = "product_category";
@@ -64,7 +63,7 @@ public class itemsDAO extends HttpServlet {
 			ArrayList<Product> productarray = new ArrayList<Product>();
 
 			try {
-				getProducts(productarray, request, response);
+				getProducts(productarray, request, response, session);
 			} catch (ClassNotFoundException | SQLException e) {
 
 				e.printStackTrace();

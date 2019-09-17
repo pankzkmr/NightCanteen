@@ -32,11 +32,15 @@ public class profileDAO extends HttpServlet {
 		result = connection.getResult("select branch from branch_table where branch_id = "+ branch_id);
 		result.next();
 		String branch = result.getString("branch");
-		String room_no_string = correctRoomNo(room_no, flank);
+		String room_no_string = correctRoomNo(room_no, flank, true);
+		String room_no_s = correctRoomNo(room_no, flank, false);
 		String phone_no_hidden = correctPhoneNo(phone_no);
 		session.setAttribute("phone_no", phone_no_hidden);
 		session.setAttribute("room_no", room_no_string);
 		session.setAttribute("branch", branch);
+		session.setAttribute("room", room_no_s);
+		session.setAttribute("flank", flank);
+		session.setAttribute("phone", phone_no);
 		System.out.println(name);
 		System.out.println(reg_no);
 		System.out.println(phone_no);
@@ -48,13 +52,19 @@ public class profileDAO extends HttpServlet {
 		return "******"+phone_no.substring(6);
 	}
 
-	private String correctRoomNo(int room_no, String flank) {
-		if(room_no > 0 && room_no < 10)	
-			return flank+"-00"+room_no;
-		else if(room_no >= 10 && room_no <100)
-			return flank+"-0"+room_no;
-		else
-			return flank+"-"+room_no;
+	private String correctRoomNo(int room_no, String flank, boolean t) {
+		if(room_no > 0 && room_no < 10)	{
+			if(t) return flank+"-00"+room_no;
+			else return "00"+room_no;
+		}
+		else if(room_no >= 10 && room_no <100) {
+			if(t) return flank+"-0"+room_no;
+			else return "0"+room_no;
+		}
+		else {
+			if(t) return flank+"-"+room_no;
+			else return ""+room_no;
+		}
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

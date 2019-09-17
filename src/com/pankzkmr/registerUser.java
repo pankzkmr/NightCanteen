@@ -1,8 +1,6 @@
 package com.pankzkmr;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -28,8 +26,7 @@ public class registerUser extends HttpServlet {
 		String roomNo = request.getParameter("roomNo");
 		String phoneNo = request.getParameter("phoneNo");
 		String password = request.getParameter("password");
-		String image = request.getParameter("pic");
-		System.out.println(image);
+//		String image = request.getParameter("pic");
 		String tableName = "profile";
 		String tableName2 = "branch_table";
 		String tableName3 = "logindata";
@@ -63,18 +60,23 @@ public class registerUser extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+//		PrintWriter out = response.getWriter();
+		boolean exception = false;
 		ServletContext sc = this.getServletContext();
 		RequestDispatcher rd = sc.getRequestDispatcher("/login.jsp");
-		request.setAttribute("login", true);
-		request.setAttribute("message", "Thanks for registration!");
-		rd.include(request, response);
-		PrintWriter out = response.getWriter();
 		try {
 			DBC(request, response);
 		} catch (ClassNotFoundException | SQLException e) {
-			out.println("error in registerUser");
+			request.setAttribute("login", true);
+			request.setAttribute("message", "error in registerUser");
 			e.printStackTrace();
+			exception = true;
 		}
+		if(!exception) {
+			request.setAttribute("login", true);
+			request.setAttribute("message", "Thanks for registration!");
+		}
+		rd.include(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

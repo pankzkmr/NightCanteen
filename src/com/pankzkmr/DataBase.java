@@ -54,9 +54,8 @@ public class DataBase {
 	}
 
 
-	public void getUpdate(String query) throws SQLException {
-		statement.executeUpdate(query);
-		return;
+	public int getUpdate(String query) throws SQLException {
+		return statement.executeUpdate(query);
 	}
 
 
