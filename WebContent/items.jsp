@@ -177,7 +177,7 @@ table {
 			
 		</table>
 	</div>
-	<div style="position: relative; margin-left: 44%;">
+	<div style="position: relative; margin-left: 44%; padding: 30px 0px;">
 		<button type="submit" class="go-button">
 				<b>Go to Cart</b>
 			</button>

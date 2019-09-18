@@ -49,6 +49,7 @@ p {
 }
 
 .column {
+	text-shadow: 2px 2px 8px #FF0000;
 	float: left;
 	width: 25%;
 	padding: 5px;

@@ -213,7 +213,7 @@ input {
 		</table>
 	</div>
 	<c:if test="${isEmpty == false}">
-		<div style="position: relative; margin-left: 44%;">
+		<div style="position: relative; margin-left: 44%; padding: 30px 0px;">
 			<button type="submit" class="place-order-button">
 				<b>Place Order</b>
 			</button>
