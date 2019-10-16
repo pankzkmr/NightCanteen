@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="icon" href="img/logo-title.webp" type="image/x-icon">
 <meta charset="ISO-8859-1">
 <title>Sign Up</title>
 <style>

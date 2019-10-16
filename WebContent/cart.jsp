@@ -20,8 +20,7 @@ input[type=checkbox] {
 }
 
 .footerimg {
-	/*background: url(img/footer.png);*/
-	background-color: #DAF7A6;
+	background: url(img/footer.jpg);
 	height: 150px;
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -231,13 +230,8 @@ input {
 				</p>
 			</li>
 			<li style="float: left; padding-left: 80px;">
-				<p>
-					<a
-						style="color: black; font-family: courier; font-size: 125%; text-decoration: none;"
-						href="##"><b>CONNECT WITH US</b></a><br> <i
-						style="color: #FF1414;">Facebook<br>Twitter<br>Instagram
-					</i>
-				</p>
+				<p ><a style="color: black;font-family:courier;font-size:125%;text-decoration: none;"href="##"><b>CONNECT WITH US</b></a><br><i style="color: #FF1414;"><a href="https://www.facebook.com/McDonalds/">Facebook</a>
+<br><a href="https://twitter.com/McDonalds">Twitter</a><br><a href="https://www.instagram.com/mcdonalds">Instagram</a></i></p>
 			</li>
 			<li style="float: left; padding-left: 80px;">
 				<p>
@@ -250,9 +244,7 @@ input {
 				<p>
 					<a
 						style="color: black; font-family: courier; font-size: 125%; text-decoration: none;"
-						href="##"><b>LET US HELP YOU</b></a><br> <i
-						style="color: #FF1414;">Help<br>FAQ's
-					</i>
+						href="faq.html"><b>LET US HELP YOU</b></a>
 				</p>
 			</li>
 		</ul>

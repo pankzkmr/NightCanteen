@@ -26,8 +26,9 @@ public class modifyDAO extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			System.out.println("sdf");
 			ServletContext sc = this.getServletContext();
-			RequestDispatcher rd = sc.getRequestDispatcher("index.jsp");
+			RequestDispatcher rd = sc.getRequestDispatcher("/profileDAO");
 			rd.include(request, response);
 		}
 		else {
@@ -52,12 +53,15 @@ public class modifyDAO extends HttpServlet {
 		if(phone_no == "") 
 			phone_no = (String) session.getAttribute("phone");
 		String query2 = "select branch_id from branch_table where branch = '" + branch + "'";
+		System.out.println("modify");
 		System.out.println(name);
 		System.out.println(reg_no);
 		System.out.println(branch);
 		System.out.println(flank);
 		System.out.println(room_no);
 		System.out.println(phone_no);
+		session.setAttribute("name", name);
+		session.setAttribute("reg_no", reg_no);
 		String url = "jdbc:mysql://localhost:3306/nightcanteen";
 		DataBase connection = new DataBase(url);
 		connection.getAccess("root", "1251");
@@ -66,7 +70,7 @@ public class modifyDAO extends HttpServlet {
 		int branch_id = result.getInt("branch_id");
 		String query = "update profile set name = '"+name+"', reg_no = "+reg_no+", branch_id = "+branch_id+", flank = '"+flank+"', room_no = "+room_no+", phone_no = '"+phone_no+"' where reg_no = " + reg_no;                                                        
 		int n = connection.getUpdate(query);
-		System.out.println(n + "row/s affected");
+		System.out.println(n + " row/s affected");
 	}
 
 //	private String phoneNoQ(String phone_no, HttpSession session) {

@@ -8,7 +8,7 @@
 	<meta charset="ISO-8859-1">
 	<title>Edit-Profile</title>
 	<link rel = "icon" href =  
-	"/home/pradeep/Documents/miniproject/img/logo-title.webp" 
+	"img/logo-title.webp" 
 	type = "image/x-icon"> 
 	<style>
 		* {

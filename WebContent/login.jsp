@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="icon" href="img/logo-title.webp" type="image/x-icon">
 <meta charset="ISO-8859-1">
 <title>Log In</title>
 <style type="text/css">
@@ -70,7 +71,7 @@
 <body>
 	<h1 style="">WELCOME!</h1>
 	<div class="error">
-	<c:if test="${login = true}">
+	<c:if test="${login == true}">
 		${message }
 	</c:if>
 	</div>

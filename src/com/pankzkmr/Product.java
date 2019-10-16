@@ -6,6 +6,7 @@ public class Product {
 	private String product_image;
 	private int price;
 	private int quantity;
+	private int total;
 
 	public Product(int product_id, String product_name, String product_image, int price, int quantity) {
 		super();
@@ -48,6 +49,14 @@ public class Product {
 
 	public int getQuantity() {
 		return quantity;
+	}
+
+	public int getTotal() {
+		return total;
+	}
+
+	public void setTotal(int total) {
+		this.total = total;
 	}
 
 	/*

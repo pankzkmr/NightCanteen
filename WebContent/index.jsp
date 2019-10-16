@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="icon" href="img/logo-title.webp" type="image/x-icon">
 <title>Night Canteen</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -30,8 +31,7 @@ p {
 }
 
 .footerimg {
-	/*background: url(img/footer.png);*/
-	background-color: #DAF7A6;
+	background: url(img/footer.jpg);
 	height: 150px;
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -98,16 +98,16 @@ p {
 		}
 	%>
 	<div class="headerimg">
-	<div>
-		<img src='img/logo.jpg'
-			style="margin-left: 50px; width: 275px; height: 125px;">
+		<div>
+			<img src='img/logo.jpg'
+				style="margin-left: 50px; width: 275px; height: 125px;">
+		</div>
+		<div style="position: relative;">
+			<a href="profileDAO"><img class="myprofile"
+				style="border-radius: 50%; width: 13%; height: 13%; margin-right: 10px;"
+				align="right" src="img/user.jpeg"></a>
+		</div>
 	</div>
-	<div style="position: relative;">
-		<a href="profileDAO"><img class="myprofile"
-			style="border-radius: 50%; width: 13%; height: 13%; margin-right: 10px;"
-			align="right" src="img/user.jpeg"></a>
-	</div>
-</div>
 	<div class="row">
 		<div class="column">
 			<a href="itemsDAO"><img src="img/patties.jpg" alt="Items"></a>
@@ -141,17 +141,12 @@ p {
 				<p>
 					<a
 						style="color: black; font-family: courier; font-size: 125%; text-decoration: none;"
-						href="##"> <b>CONTACT US</b></a><br>
+						href="##"><b> CONTACT US</b></a><br>
 				</p>
 			</li>
 			<li style="float: left; padding-left: 80px;">
-				<p>
-					<a
-						style="color: black; font-family: courier; font-size: 125%; text-decoration: none;"
-						href="##"><b>CONNECT WITH US</b></a><br> <i
-						style="color: #FF1414;">Facebook<br>Twitter<br>Instagram
-					</i>
-				</p>
+				<p ><a style="color: black;font-family:courier;font-size:125%;text-decoration: none;"href="##"><b>CONNECT WITH US</b></a><br><i style="color: #FF1414;"><a href="https://www.facebook.com/McDonalds/">Facebook</a>
+<br><a href="https://twitter.com/McDonalds">Twitter</a><br><a href="https://www.instagram.com/mcdonalds">Instagram</a></i></p>	
 			</li>
 			<li style="float: left; padding-left: 80px;">
 				<p>
@@ -164,9 +159,7 @@ p {
 				<p>
 					<a
 						style="color: black; font-family: courier; font-size: 125%; text-decoration: none;"
-						href="##"><b>LET US HELP YOU</b></a><br> <i
-						style="color: #FF1414;">Help<br>FAQ's
-					</i>
+						href="faq.html"><b>LET US HELP YOU</b></a>
 				</p>
 			</li>
 		</ul>

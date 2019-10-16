@@ -73,6 +73,7 @@ public class finalDAO extends HttpServlet {
 					System.out.println(quantity);
 					total += quantity * price;
 					Product product_temp = new Product(product_id, product_name, null, price, quantity);
+					product_temp.setTotal(price * quantity);
 					System.out.println(product_id);
 					productarray3.add(product_temp);
 					isEmpty = false;
@@ -86,7 +87,7 @@ public class finalDAO extends HttpServlet {
 		} else {
 			session.setAttribute("isEmptyOrder", false);
 			session.setAttribute("productOrdered", productarray3);
-			session.setAttribute("message", "Total Bill: Rs." + total);
+			session.setAttribute("message", "" + total);
 			addOrderHistory(session, total, connection);
 			return;
 		}

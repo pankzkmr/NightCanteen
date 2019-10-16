@@ -17,13 +17,16 @@ public class profileDAO extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void DBC(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ClassNotFoundException, SQLException {
+		System.out.println("a");
 		String name = (String)session.getAttribute("name");
+		System.out.println("a");
 		int reg_no = (int)session.getAttribute("reg_no");
 		String url = "jdbc:mysql://localhost:3306/nightcanteen";
 		DataBase connection = new DataBase(url);
 		connection.getAccess("root", "1251");
 		ResultSet result = connection.getResult("select * from profile where reg_no = "+ reg_no);
 		result.next();
+		System.out.println("a");
 		String flank = result.getString("flank");
 		String phone_no = result.getString("phone_no");
 		int room_no = result.getInt("room_no");
